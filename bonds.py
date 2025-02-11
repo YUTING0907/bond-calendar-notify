@@ -2,6 +2,7 @@ import os
 import requests
 import re
 import json
+import datetime
 
 # 获取打新债数据
 def get_bond_calendar():
@@ -42,7 +43,9 @@ def get_bond_calendar():
 
     return bonds
 
-
+def get_today_date():
+    return datetime.today().strftime('%Y-%m-%d')
+    
 # 发送 Server 酱通知
 def send_to_wechat(bonds):
     server_key = os.getenv("SERVERCHAN_API_KEY")
@@ -68,5 +71,12 @@ def send_to_wechat(bonds):
 
 
 if __name__ == "__main__":
+    today_date = get_today_date()  # 获取今天的日期
     bonds = get_bond_calendar()
-    send_to_wechat(bonds)
+    # 筛选出申购日期等于今天的债券
+    bonds_to_send = [bond for bond in bonds if bond['PUBLIC_START_DATE'] == today_date]
+
+    if bonds_to_send:
+        send_to_wechat(bonds_to_send)  # 发送符合条件的债券推送
+    else:
+        print(f"今天没有申购的新债 ({today_date})")
