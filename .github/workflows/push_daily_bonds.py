@@ -6,7 +6,7 @@ env:
 
 on:
   schedule:
-    - cron: '18 7 * * *' # 每天 UTC 时间 00:00 触发, 即上海时间9点
+    - cron: '24 8 * * *' # 每天 UTC 时间 00:00 触发, 即上海时间9点
 
 jobs:
   daily-push:
@@ -26,7 +26,7 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           
       - name: Install dependencies
-        run: pip install tqdm requests
+        run: pip install os requests re json
 
 
       - name: PUSH ARXIV DAILY
