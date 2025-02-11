@@ -3,6 +3,7 @@
 
 * 利用GitHub Action每天定时推送最新的新债
 * Server酱提供从服务器到微信端的推送
+  
 1.GitHub Actions
 是一项持续集成和部署服务，可用于自动化构建、测试和部署你的代码。 配置 GitHub Actions 主要包括以下步骤： 在你的代码仓库中创建 .github/workflows 目录。 在 .github/workflows 目录中创建一个 YAML 格式的配置文件，命名为 [workflow-name].yml，其中 [workflow-name] 是你自定义的工作流名称。
 
