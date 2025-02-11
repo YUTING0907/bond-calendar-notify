@@ -26,9 +26,9 @@ jobs:
           python-version: ${{ env.PYTHON_VERSION }}
           
       - name: Install dependencies
-        run: pip install requests
+        run: pip install requests datetime
 
-      - name: PUSH ARXIV DAILY
+      - name: PUSH BONDS DAILY
         run: python bonds.py
         
       - name: Commit files
