@@ -42,6 +42,7 @@ def get_bond_calendar():
 
     return bonds
 
+
 # 发送 Server 酱通知
 def send_to_wechat(bonds):
     server_key = os.getenv("SERVERCHAN_API_KEY")
@@ -57,7 +58,7 @@ def send_to_wechat(bonds):
     else:
         title = "📅 今日可申购新债"
         content = "\n".join(
-            [f"🔹 **{bond['SECURITY_NAME_ABBR']}**（{bond['SECURITY_CODE']}） - 申购日期: {bond['PUBLIC_START_DATE']}"
+            [f"🔹 **{bond['SECURITY_NAME_ABBR']}**（{bond['SECURITY_CODE']}） - 申购日期: {bond['PUBLIC_START_DATE']}  - 信用评级: {bond['RATING']}"
              for bond in bonds]
         )
 
