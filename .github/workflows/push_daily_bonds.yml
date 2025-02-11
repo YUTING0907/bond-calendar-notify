@@ -6,7 +6,7 @@ env:
 
 on:
   schedule:
-    - cron: '57 8 * * *' # 每天 UTC 时间 00:00 触发, 即上海时间9点
+    - cron: '02 9 * * *' # 每天 UTC 时间 00:00 触发, 即上海时间9点
 
 jobs:
   daily-push:
@@ -27,7 +27,6 @@ jobs:
           
       - name: Install dependencies
         run: pip install requests re json
-
 
       - name: PUSH ARXIV DAILY
         run: python bonds.py
