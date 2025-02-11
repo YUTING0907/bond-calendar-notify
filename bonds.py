@@ -44,12 +44,12 @@ def get_bond_calendar():
 
 # 发送 Server 酱通知
 def send_to_wechat(bonds):
-    server_key = os.getenv("SCT211058TAJvwAryxbetSUdgVUWBH3vKf")
+    server_key = os.getenv("SERVERCHAN_API_KEY")
     if not server_key:
         print("未设置 Server 酱 SendKey")
         return
 
-    url = f"https://sctapi.ftqq.com/SCT211058TAJvwAryxbetSUdgVUWBH3vKf.send"
+    url = f"https://sctapi.ftqq.com/{server_key}.send"
 
     if not bonds:
         title = "📅 今日无可申购新债"
