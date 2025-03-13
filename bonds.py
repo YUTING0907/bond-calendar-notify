@@ -83,7 +83,7 @@ if __name__ == "__main__":
     today_date = get_today_date_UTC()  # 获取今天的日期
     bonds = get_bond_calendar()
     # 筛选出申购日期等于今天的债券
-    bonds_to_send = [bond for bond in bonds if bond['PUBLIC_START_DATE'] == today_date]
+    bonds_to_send = [bond for bond in bonds if str(bond['PUBLIC_START_DATE']) == today_date]
 
     if bonds_to_send:
         send_to_wechat(bonds_to_send)  # 发送符合条件的债券推送
