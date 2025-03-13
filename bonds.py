@@ -54,7 +54,7 @@ def get_today_date_UTC():
     beijing_time = now_utc + timedelta(hours=8)
     
     # 格式化为 'YYYY-MM-DD'
-    return beijing_time.strftime('%Y-%m-%d')
+    return beijing_time.strftime('%Y-%m-%d') + " 00:00:00"
     
 # 发送 Server 酱通知
 def send_to_wechat(bonds):
