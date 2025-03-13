@@ -53,7 +53,6 @@ def get_today_date_UTC():
     # 手动加 8 小时，转换为北京时间
     beijing_time = now_utc + timedelta(hours=8)
     
-    # 格式化为 'YYYY-MM-DD'
     return beijing_time.strftime('%Y-%m-%d') + " 00:00:00"
     
 # 发送 Server 酱通知
