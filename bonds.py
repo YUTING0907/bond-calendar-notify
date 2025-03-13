@@ -2,7 +2,7 @@ import os
 import requests
 import re
 import json
-from datetime import datetime
+from datetime import datetime, timedelta
 
 # 获取打新债数据
 def get_bond_calendar():
@@ -45,6 +45,16 @@ def get_bond_calendar():
 
 def get_today_date():
     return datetime.today().strftime('%Y-%m-%d')
+
+def get_today_date_UTC():
+    # 获取当前 UTC 时间
+    now_utc = datetime.utcnow()
+    
+    # 手动加 8 小时，转换为北京时间
+    beijing_time = now_utc + timedelta(hours=8)
+    
+    # 格式化为 'YYYY-MM-DD'
+    return beijing_time.strftime('%Y-%m-%d')
     
 # 发送 Server 酱通知
 def send_to_wechat(bonds):
@@ -71,7 +81,7 @@ def send_to_wechat(bonds):
 
 
 if __name__ == "__main__":
-    today_date = get_today_date()  # 获取今天的日期
+    today_date = get_today_date_UTC()  # 获取今天的日期
     bonds = get_bond_calendar()
     # 筛选出申购日期等于今天的债券
     bonds_to_send = [bond for bond in bonds if bond['PUBLIC_START_DATE'] == today_date]
