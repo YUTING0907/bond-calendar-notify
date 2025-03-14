@@ -1,5 +1,5 @@
 # bond-calendar-notify
-新债每天九点定时微信推送
+### 新债打新每天九点定时微信推送
 
 * 利用GitHub Action每天定时推送最新的新债
 * Server酱提供从服务器到微信端的推送
