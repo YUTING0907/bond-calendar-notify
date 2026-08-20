@@ -1,0 +1,35 @@
+name: keep_scheduled_workflows_active
+
+on:
+  workflow_dispatch:
+  schedule:
+    # 每月 1 日运行一次，持续产生仓库活动，避免定时工作流因闲置被停用。
+    - cron: "23 3 1 * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bond-calendar-keepalive
+  cancel-in-progress: false
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - name: Record repository activity
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git pull --rebase origin "$GITHUB_REF_NAME"
+          date -u +"%Y-%m-%dT%H:%M:%SZ" > .github/.keepalive
+          git add -- .github/.keepalive
+          git commit -m "chore: keep scheduled workflows active [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
